@@ -3,6 +3,7 @@
 # Package Files #
 *.war
 *.ear
+*.jar
 
 
 # Eclipse
@@ -21,3 +22,4 @@
 # Maven
 log/
 target/
+out/
