@@ -53,13 +53,6 @@ public class BinaryDecimalSystem {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(toBinaryDecimalNumber(42l));     // 01000010
-        System.out.println(toDecimalNumber("01000010"));    // 42
-        test01();
-        test02();
-    }
-
     public static int getIntegerFromBinary(String binaryNumber) {
         switch (binaryNumber) {
             case "0000":
@@ -100,29 +93,4 @@ public class BinaryDecimalSystem {
             "1001"  // 9
     };
 
-    private static void test01() {
-        int number = 3691;
-        String strNumber = "0011011010010001";
-
-        // direct conversion
-        if (!strNumber.equals(toBinaryDecimalNumber(number)))
-            throw new RuntimeException("Something went wrong");
-
-        // inverse conversion
-        if (number != toDecimalNumber(strNumber))
-            throw new RuntimeException("Something went wrong");
-    }
-
-    private static void test02() {
-        int number = 8072;
-        String strNumber = "1000000001110010";
-
-        // direct conversion
-        if (!strNumber.equals(toBinaryDecimalNumber(number)))
-            throw new RuntimeException("Something went wrong");
-
-        // inverse conversion
-        if (number != toDecimalNumber(strNumber))
-            throw new RuntimeException("Something went wrong");
-    }
 }

@@ -103,12 +103,6 @@ public class IntegerUtil {
         return -1;
     }
 
-    public static void main(String[] args) {
-//        System.out.println((getDirectCode(-32)));
-//        System.out.println((getReverseCode(-32)));
-//        System.out.println((getAdditionalCode(-32)));
-    }
-
     public static String getFormattedCode(String code) {
         StringBuilder sb = new StringBuilder();
 
