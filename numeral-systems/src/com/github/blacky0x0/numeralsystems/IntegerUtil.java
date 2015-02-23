@@ -1,4 +1,4 @@
-package com.github.blacky0x0;
+package com.github.blacky0x0.numeralsystems;
 
 import java.util.Arrays;
 

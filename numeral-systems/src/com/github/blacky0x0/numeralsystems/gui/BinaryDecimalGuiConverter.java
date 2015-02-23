@@ -1,6 +1,6 @@
-package com.github.blacky0x0.gui;
+package com.github.blacky0x0.numeralsystems.gui;
 
-import com.github.blacky0x0.BinaryDecimalSystem;
+import com.github.blacky0x0.numeralsystems.BinaryDecimalSystem;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;

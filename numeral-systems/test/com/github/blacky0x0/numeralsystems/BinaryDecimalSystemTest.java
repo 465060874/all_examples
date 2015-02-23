@@ -1,5 +1,6 @@
-package com.github.blacky0x0;
+package com.github.blacky0x0.numeralsystems;
 
+import com.github.blacky0x0.numeralsystems.BinaryDecimalSystem;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

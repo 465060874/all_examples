@@ -1,6 +1,6 @@
-package com.github.blacky0x0.gui;
+package com.github.blacky0x0.numeralsystems.gui;
 
-import com.github.blacky0x0.IntegerUtil;
+import com.github.blacky0x0.numeralsystems.IntegerUtil;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
