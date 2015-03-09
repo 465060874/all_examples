@@ -39,30 +39,8 @@ public class SinApp extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 longActionBtn.setEnabled(false);
 
-                new Thread() {
-                    @Override
-                    public void run() {
-
-                        // emulate a long-long action
-                        for (int i = 0; i < 30; i++) {
-                            try { Thread.sleep(100); }
-                            catch (InterruptedException e1) { e1.printStackTrace(); }
-                        }
-
-                        // set a property from EventDispatchThread
-                        if (SwingUtilities.isEventDispatchThread()) {
-                            System.out.println("An action is done!");
-                            longActionBtn.setEnabled(true);
-                        } else {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                public void run() {
-                                    System.out.println("An action is done!");
-                                    longActionBtn.setEnabled(true);
-                                }
-                            });
-                        }
-                    }
-                }.start();
+                // delegate large amount of work to a child of SwingWorker
+                new LongActionWorker(longActionBtn).execute();
             }
         });
 
@@ -118,5 +96,30 @@ public class SinApp extends JFrame {
         int y = (int)(display.getHeight() - window.getHeight()) / 2;
 
         return new Point(x, y);
+    }
+
+    class LongActionWorker extends SwingWorker<Void, Void> {
+        private JButton btn;
+
+        public LongActionWorker(JButton btn) {
+            this.btn = btn;
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception {
+
+            // emulate a long-long action
+            for (int i = 0; i < 20; i++) {
+                try { Thread.sleep(100); }
+                catch (InterruptedException e1) { e1.printStackTrace(); }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void done() {
+            btn.setEnabled(true);
+        }
     }
 }
