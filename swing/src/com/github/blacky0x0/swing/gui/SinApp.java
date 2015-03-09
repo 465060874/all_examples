@@ -32,16 +32,37 @@ public class SinApp extends JFrame {
 
         controlPanel.add(longActionBtn, BorderLayout.CENTER);
         controlPanel.add(gridCheckBox, BorderLayout.SOUTH);
-        controlPanel.setSize(50, 100);
 
-        // emulate a long-long action
+
         longActionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < 30; i++) {
-                    try { Thread.sleep(100); }
-                    catch (InterruptedException e1) { e1.printStackTrace(); }
-                }
+                longActionBtn.setEnabled(false);
+
+                new Thread() {
+                    @Override
+                    public void run() {
+
+                        // emulate a long-long action
+                        for (int i = 0; i < 30; i++) {
+                            try { Thread.sleep(100); }
+                            catch (InterruptedException e1) { e1.printStackTrace(); }
+                        }
+
+                        // set a property from EventDispatchThread
+                        if (SwingUtilities.isEventDispatchThread()) {
+                            System.out.println("An action is done!");
+                            longActionBtn.setEnabled(true);
+                        } else {
+                            SwingUtilities.invokeLater(new Runnable() {
+                                public void run() {
+                                    System.out.println("An action is done!");
+                                    longActionBtn.setEnabled(true);
+                                }
+                            });
+                        }
+                    }
+                }.start();
             }
         });
 
@@ -68,8 +89,12 @@ public class SinApp extends JFrame {
     }
 
     public static void main(String[] args) {
-        SinApp app = new SinApp();
-        app.init();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                SinApp app = new SinApp();
+                app.init();
+            }
+        });
     }
 
     /**
